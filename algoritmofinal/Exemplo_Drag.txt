@@ -1,0 +1,80 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import accuracy_score, f1_score, classification_report, confusion_matrix
+
+# Criando a base de dados fake
+data = {
+    'nome': ['Queen A', 'Queen B', 'Queen C', 'Queen D', 'Queen E',
+             'Queen F', 'Queen G', 'Queen H', 'Queen I', 'Queen J'],
+    'idade': [28, 31, 25, 29, 33, 27, 30, 24, 35, 26],
+    'cidade': ['São Paulo', 'Rio de Janeiro', 'Recife', 'Salvador', 'São Paulo',
+               'Belo Horizonte', 'Recife', 'Rio de Janeiro', 'Salvador', 'São Paulo'],
+    'tipo_de_desafio': ['Moda', 'Dança', 'Costura', 'Atuação', 'Moda',
+                        'Comédia', 'Atuação', 'Moda', 'Dança', 'Costura'],
+    'colocacao_semanal': [2, 5, 4, 3, 1, 6, 7, 2, 5, 4],
+    'status': ['Competindo', 'Eliminada', 'Competindo', 'Retornou', 'Competindo',
+               'Competindo', 'Eliminada', 'Desclassificada', 'Competindo', 'Competindo'],
+    'vencedora': [0, 0, 0, 0, 1, 0, 0, 0, 0, 0]  # Queen E venceu
+}
+
+df = pd.DataFrame(data)
+
+# Visualização: distribuição da variável alvo
+plt.figure(figsize=(6,4))
+sns.countplot(x='vencedora', data=df)
+plt.title('Distribuição da variável alvo (vencedora)')
+plt.xlabel('Vencedora (1) vs Não vencedora (0)')
+plt.ylabel('Contagem')
+plt.show()
+
+# Pré-processamento
+df = df[df['status'] != 'Desclassificada']  # Remove desclassificadas
+df['retorno'] = df['status'].apply(lambda x: 1 if 'Retornou' in x else 0)
+df = df.drop(columns=['nome', 'status'])
+
+# Codificação
+label_cols = ['cidade', 'tipo_de_desafio']
+for col in label_cols:
+    le = LabelEncoder()
+    df[col] = le.fit_transform(df[col])
+
+# Features e target
+X = df.drop(columns=['vencedora'])
+y = df['vencedora']
+
+# Treino e teste
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Modelo
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+
+# Avaliação
+print("Acurácia:", accuracy_score(y_test, y_pred))
+print("F1-score:", f1_score(y_test, y_pred))
+print("\nRelatório de Classificação:\n", classification_report(y_test, y_pred))
+
+# Matriz de confusão
+cm = confusion_matrix(y_test, y_pred)
+plt.figure(figsize=(6,5))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+plt.title('Matriz de Confusão')
+plt.xlabel('Previsto')
+plt.ylabel('Real')
+plt.show()
+
+# Importância das variáveis
+importances = model.feature_importances_
+features = X.columns
+plt.figure(figsize=(8,5))
+sns.barplot(x=importances, y=features)
+plt.title('Importância das Variáveis')
+plt.xlabel('Score de importância')
+plt.ylabel('Variáveis')
+plt.show()

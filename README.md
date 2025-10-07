@@ -14,13 +14,15 @@ Esta seção detalha os principais arquivos e pastas do projeto, como os que voc
 | **regressao_linear_meio.ipynb** | Jupyter Notebook | Notebook contendo o código e a análise da regressão linear para os dados de 'meio'. |
 | **transformacao_dados.ipynb** | Jupyter Notebook | Notebook com os passos de limpeza, tratamento e transformação dos dados brutos. |
 | **previsao/** | **Pasta** | **Resultados finais e previsões. Detalhado abaixo.** |
+---
 
 ## 📈 Detalhes da Pasta `previsao/`
 
+| Nome do Arquivo | Tipo | Descrição |
 | :--- | :--- | :--- |
 | **meio_previsoes_vencedoras.xlsx** | Excel | Lista de previsões completo para o modelo de 'meio' baseado em resultados vencedores. |
-| **top3_regressao_meio.xlsx** | Excel | O top 3 provavel de vitório do modelo 'meio'. |
+| **top3_regressao_meio.xlsx** | Excel | O top 3 provavel de vitória do modelo 'meio'. |
 | **fim_previsoes_vencedoras.xlsx** | Excel | Lista de previsões completo para o modelo de 'fim' baseado em resultados vencedores. |
-| **top3_regressao_fim.xlsx** | Excel |  O top 3 provavel de vitório do modelo 'fim'. |
+| **top3_regressao_fim.xlsx** | Excel | O top 3 provavel de vitória do modelo 'fim'. |
 
 ---

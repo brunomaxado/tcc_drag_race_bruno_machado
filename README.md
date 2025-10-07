@@ -1,6 +1,6 @@
 ## 📂 Estrutura de Arquivos
 
-Esta seção detalha os principais arquivos e pastas do projeto, como os que você listou.
+Esta seção detalha os principais arquivos e pastas do projeto.
 
 | Nome do Arquivo / Pasta | Tipo | Descrição |
 | :--- | :--- | :--- |

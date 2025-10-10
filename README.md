@@ -12,6 +12,8 @@ Esta seção detalha os principais arquivos e pastas do projeto.
 | **queen_por_posicao.xlsx** | Excel | Dados agregados ou filtrados por posição |
 | **regressao_linear_fim.ipynb** | Jupyter Notebook | Notebook contendo o código e a análise da regressão linear para os dados de 'fim'. |
 | **regressao_linear_meio.ipynb** | Jupyter Notebook | Notebook contendo o código e a análise da regressão linear para os dados de 'meio'. |
+| **random_final.py** | Python| Codígo Python contendo o código e a análise de random forest para os dados de 'fim'. |
+| **random_meio.py** | Python | Codígo Python contendo o código e a análise de random forest para os dados de 'meio'. |
 | **transformacao_dados.ipynb** | Jupyter Notebook | Notebook com os passos de limpeza, tratamento e transformação dos dados brutos. |
 | **previsao/** | **Pasta** | **Resultados finais e previsões. Detalhado abaixo.** |
 ---
